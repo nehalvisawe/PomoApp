@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Extended Pomodoro Timer",
+  "version": "1.0",
+  "description": "A customizable Pomodoro timer with progress tracking and advanced features",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "notifications"
+  ],
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Pomodoro Timer"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "start-pause": {
+      "suggested_key": {
+        "default": "space"
+      },
+      "description": "Start/Pause timer"
+    },
+    "reset": {
+      "suggested_key": {
+        "default": "R"
+      },
+      "description": "Reset timer"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

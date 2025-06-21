@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="shortcut icon" href="./pomo_icon.png" type="image/x-ic">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⏱️FocusFlow</h1>
+            <div class="settings-btn" id="settingsBtn">⚙️ Settings</div>
+        </div>
+
+        <div class="timer-section">
+            <div class="timer-display">
+                <div class="progress-ring">
+                    <svg class="progress-circle" width="300" height="300">
+                        <circle cx="150" cy="150" r="140" stroke="#e2eeff" stroke-width="8" fill="none"/>
+                        <circle id="progressCircle" cx="150" cy="150" r="140" stroke="#4382ec" stroke-width="8" 
+                                fill="none" stroke-linecap="round" transform="rotate(-90 150 150)"
+                                stroke-dasharray="879.6" stroke-dashoffset="879.6"/>
+                    </svg>
+                    <div class="timer-text">
+                        <div id="timerDisplay">25:00</div>
+                        <div class="session-type" id="sessionType">Focus Time</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="startPauseBtn" class="control-btn primary">Start</button>
+                <button id="resetBtn" class="control-btn secondary">Reset</button>
+                <button id="skipBtn" class="control-btn secondary">Skip</button>
+            </div>
+
+            <div class="session-info">
+                <div class="info-card">
+                    <span class="label">Sessions Today:</span>
+                    <span id="sessionsToday">0</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">Total Time:</span>
+                    <span id="totalTime">0h 0m</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">Current Streak:</span>
+                    <span id="currentStreak">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" data-tab="timer">Timer</div>
+            <div class="tab" data-tab="stats">Statistics</div>
+            <div class="tab" data-tab="settings">Settings</div>
+        </div>
+
+        <div class="tab-content">
+            <div id="timerTab" class="tab-panel active">
+                <div class="quick-actions">
+                    <h3>Quick Start</h3>
+                    <div class="preset-buttons">
+                        <button class="preset-btn" data-focus="25" data-break="5">Classic (25/5)</button>
+                        <button class="preset-btn" data-focus="50" data-break="10">Extended (50/10)</button>
+                        <button class="preset-btn" data-focus="90" data-break="20">Deep Work (90/20)</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="statsTab" class="tab-panel">
+                <div class="stats-section">
+                    <h3>Daily Progress</h3>
+                    <canvas id="dailyChart" width="600" height="300"></canvas>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="weeklyTotal">0h</div>
+                        <div class="stat-label">This Week</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="monthlyTotal">0h</div>
+                        <div class="stat-label">This Month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="longestStreak">0</div>
+                        <div class="stat-label">Longest Streak</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalSessions">0</div>
+                        <div class="stat-label">Total Sessions</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="settingsTab" class="tab-panel">
+                <div class="settings-section">
+                    <h3>Timer Settings</h3>
+                    <div class="setting-group">
+                        <label for="focusTime">Focus Duration (minutes):</label>
+                        <input type="number" id="focusTime" min="1" max="180" value="25">
+                    </div>
+                    <div class="setting-group">
+                        <label for="shortBreak">Short Break (minutes):</label>
+                        <input type="number" id="shortBreak" min="1" max="60" value="5">
+                    </div>
+                    <div class="setting-group">
+                        <label for="longBreak">Long Break (minutes):</label>
+                        <input type="number" id="longBreak" min="1" max="60" value="15">
+                    </div>
+                    <div class="setting-group">
+                        <label for="longBreakInterval">Long Break After:</label>
+                        <input type="number" id="longBreakInterval" min="2" max="10" value="4"> sessions
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3>Notifications</h3>
+                    <div class="setting-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="soundEnabled" checked>
+                            <span class="checkmark"></span>
+                            Enable completion sound
+                        </label>
+                    </div>
+                    <div class="setting-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="notificationsEnabled" checked>
+                            <span class="checkmark"></span>
+                            Enable browser notifications
+                        </label>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3>Keyboard Shortcuts</h3>
+                    <div class="shortcuts-info">
+                        <div class="shortcut-item">
+                            <span class="shortcut-key">Ctrl + Shift + P</span>
+                            <span>Start/Pause Timer</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <span class="shortcut-key">Ctrl + Shift + R</span>
+                            <span>Reset Timer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="confetti-container"></div>
+
+    <audio id="completionSound" preload="auto">
+        <source src="./cute_sound.mp3" type="audio/wav">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
