@@ -41,7 +41,7 @@
 1. **Clone or download** this repository:
 
 ```bash
-git clone https://github.com/your-username/focusflow-extension.git
+git clone https://github.com/nehalvisawe/PomoApp
 ```
 2. ***Load the extension*** into Chrome:
    Go to chrome://extensions/
