@@ -26,7 +26,7 @@
 - 🆕 **New Tab Override**  
   Whenever you open a new tab, **FocusFlow** launches — keeping you focused and intentional online.
 
----
+
 
 ## 📷 Screenshots
 
@@ -34,7 +34,7 @@
  (screenshots/ss1.png)
  (screenshots/ss2.png) 
 
----
+
 
 ## 📦 Installation Guide
 
