@@ -30,9 +30,9 @@
 
 ## 📷 Screenshots
 
-| Dashboard View                  | Focus Timer Active            | Productivity Chart             |
-|---------------------------------|-------------------------------|--------------------------------|
-| ![Dashboard Screenshot](screenshots/ss1.png) | ![Timer Screenshot](screenshots/ss2.png) | ![Report Screenshot](screenshots/ss3.png) |
+
+ (screenshots/ss1.png)
+ (screenshots/ss2.png) 
 
 ---
 
