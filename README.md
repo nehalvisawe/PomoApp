@@ -30,9 +30,10 @@
 
 ## 📷 Screenshots
 
+  ![FocusFlow](screenshots/ss1.png)
+  ![Reports](screenshots/ss2.png)
 
- (screenshots/ss1.png)
- (screenshots/ss2.png) 
+ 
 
 
 
